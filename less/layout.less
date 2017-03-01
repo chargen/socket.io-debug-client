@@ -12,3 +12,29 @@ body {
 #emitter {
   flex: 0 0 auto;
 }
+
+.push-right {
+  display: flex;
+  flex-direction: column;
+  position:absolute;
+  overflow-y:hidden;
+  left:350px;
+  right:0;
+  top:0;
+  bottom:0;
+}
+
+.push-left {
+  display: flex;
+  flex-direction: column;
+  overflow-y:scroll;
+  left:0px;
+  width:350px;
+  top:0;
+  bottom:0;
+}
+
+.push-right > .row, #emitter > .row, .push-left > .row, {
+  margin:0 0;
+  max-width:inherit;
+}

@@ -8,44 +8,47 @@
 </head>
 <body>
   <iframe name='hidden-iframe' class='hidden' src='about:blank'></iframe>
-  <form id='settings' class='row collapse' target='hidden-iframe'>
-    <div class='small-6 medium-8 large-10 columns'>
-      <input type='url' id='socket-url' name='socket-url' required placeholder='url' autofocus autocomplete='on' autosave='socket.io-debug-client-url'>
-    </div>
-    <div class='small-3 medium-2 large-1 columns'>
-      <button type='submit' class='postfix button connect' type='submit'>Connect!</button>
-    </div>
-    <div class='small-3 medium-2 large-1 columns'>
-      <button type='button' class='postfix button disconnect alert disabled' type='submit'>Disconnect</button>
-    </div>
-  </form>
-  <section id='timelinemenu' class='row'>
-    <div class='menu'>
-      <ul>
-        <li><a id='cleartimeline'><i class='fi-trash'></i> clear</a></li>
-        <li><a id='autoscroll'><i class='fi-arrow-down'></i> autoscroll</a></li>
-        <li><a href='#' data-reveal-id='info'><i class='fi-info'></i> info</a></li>
-      </ul>
-    </div>
-  </section>
-  <section id='timeline' class='row'>
-  </section>
-  <section id='emitter'>
-    <div class='row collapse'>
-      <pre id='jsonpreview' class='small-offset-3 small-7 columns'></pre>
-    </div>
-    <form id='emitter' class='row collapse' enctype='multipart/form-data' target='hidden-iframe' autocapitalize='none' spellcheck='false' autocorrect='off'>
-      <div class='small-3 columns'>
-        <input type='text' class='' name='eventType' placeholder='Event type' required>
-      </div>
-      <div class='small-7 columns'>
-        <textarea class='form-control' name='eventData' placeholder='Event data'></textarea>
-      </div>
-      <div class='small-2 columns'>
-        <button type='submit' class='button postfix'>Send</button>
-      </div>
-    </form>
-  </section>
+  <div class="push-left"></div>
+  <div class="push-right">
+      <form id='settings' class='row collapse' target='hidden-iframe'>
+        <div class='small-6 medium-8 large-10 columns'>
+          <input type='url' id='socket-url' name='socket-url' value="http://localhost:8088" required placeholder='url'>
+        </div>
+        <div class='small-3 medium-2 large-1 columns'>
+          <button type='submit' class='postfix button connect' type='submit' autofocus>Connect</button>
+        </div>
+        <div class='small-3 medium-2 large-1 columns'>
+          <button type='button' class='postfix button disconnect alert disabled' type='submit'>Disconnect</button>
+        </div>
+      </form>
+      <section id='timelinemenu' class='row'>
+        <div class='menu'>
+          <ul>
+            <li><a id='cleartimeline'><i class='fi-trash'></i> clear</a></li>
+            <li><a id='autoscroll'><i class='fi-arrow-down'></i> autoscroll</a></li>
+            <li><a href='#' data-reveal-id='info'><i class='fi-info'></i> info</a></li>
+          </ul>
+        </div>
+      </section>
+      <section id='timeline' class='row'>
+      </section>
+      <section id='emitter'>
+        <div class='row collapse'>
+          <pre id='jsonpreview' class='small-offset-3 small-7 columns'></pre>
+        </div>
+        <form id='emitter' class='row collapse' enctype='multipart/form-data' target='hidden-iframe' autocapitalize='none' spellcheck='false' autocorrect='off'>
+          <div class='small-3 columns'>
+            <input type='text' class='' name='eventType' placeholder='Event type' required>
+          </div>
+          <div class='small-7 columns'>
+            <textarea class='form-control' name='eventData' placeholder='Event data'></textarea>
+          </div>
+          <div class='small-2 columns'>
+            <button type='submit' class='button postfix'>Send</button>
+          </div>
+        </form>
+      </section>
+  </div>
   <div id='info' class='reveal-modal' data-reveal>
     <h2>Info</h2>
     <p>

@@ -68,6 +68,7 @@ function connect(url) {
   });
   anyEventCreator(_socket);
   _socket.on("any",function(eventType,data) {
+    customFilterEvents(eventType, data);
     timeline.receivedEvent(eventType,data);
   });
   _ss = ss(_socket);
@@ -79,17 +80,19 @@ function connect(url) {
 
 $eventData.onfocus = function(event) {
   $jsonpreview.classList.add('show');
-  this.onkeyup = function(event) {
-    try {
-      var json = YAML.parse(this.value);
-      $jsonpreview.textContent = JSON.stringify(json, undefined, 2);
-      $jsonpreview.classList.remove('parseerror');
-    } catch(err) {
-      $jsonpreview.textContent = err;
-      $jsonpreview.classList.add('parseerror');
-    }
-  };
 };
+
+$eventData.onkeyup = function(event) {
+    try {
+        var json = YAML.parse(this.value);
+        $jsonpreview.textContent = JSON.stringify(json, undefined, 2);
+        $jsonpreview.classList.remove('parseerror');
+    } catch(err) {
+        $jsonpreview.textContent = err;
+        $jsonpreview.classList.add('parseerror');
+    }
+};
+
 $eventData.onblur = function(event) {
   this.onchange = null;
   $jsonpreview.classList.remove('show');
