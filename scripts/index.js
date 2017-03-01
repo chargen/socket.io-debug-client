@@ -1,15 +1,15 @@
 var $settings         = document.querySelector('#settings');
 var $disconnectBtn    = document.querySelector('#settings .disconnect');
 var $settingsURL      = document.querySelector('#settings #socket-url');
-var $timeline         = document.querySelector('#timeline'); 
+var $timeline         = document.querySelector('#timeline');
 var $timelineMenu     = document.querySelector('#timelinemenu');
 var $emitter          = document.querySelector('#emitter');
 var $eventType        = $emitter.querySelector('[name=eventType]');
 var $eventData        = $emitter.querySelector('[name=eventData]');
 var $jsonpreview      = $emitter.querySelector('#jsonpreview');
-var timeline          = new Timeline($timeline,$timelineMenu); 
+var timeline          = new Timeline($timeline,$timelineMenu);
 
-var _socket; 
+var _socket;
 var _ss; // socket.io-stream socket
 var _currentURL;
 
@@ -70,11 +70,11 @@ function connect(url) {
   _socket.on("any",function(eventType,data) {
     timeline.receivedEvent(eventType,data);
   });
-  _ss = ss(_socket); 
+  _ss = ss(_socket);
   anyEventCreator(_ss);
   _ss.on("any",function(eventType,stream,data) {
     timeline.receivedStreamingEvent(eventType,data);
-  }); 
+  });
 }
 
 $eventData.onfocus = function(event) {

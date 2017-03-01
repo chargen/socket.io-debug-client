@@ -1,11 +1,18 @@
-var gulp            = require('gulp'); 
+var gulp            = require('gulp');
 var concat          = require('gulp-concat');
 var mainBowerFiles  = require('main-bower-files');
 var uglify          = require('gulp-uglify');
-var minifycss       = require('gulp-minify-css');
 var gulpMerge       = require('gulp-merge');
 var less            = require('gulp-less');
 var debug           = require('gulp-debug');
+
+var path = require('path');
+
+var bowerCssFiles = [
+    './bower_components/foundation/css/normalize.css',
+    './bower_components/foundation/css/foundation.css',
+    './bower_components/foundation-icon-fonts/foundation-icons.css'
+];
 
 var paths = {
   bower_js: mainBowerFiles({filter:'**/*.js'}),
@@ -13,8 +20,8 @@ var paths = {
        'bower_components/socket.io-client/socket.io.js',
        'scripts/**/*.js'
       ],
-  css: mainBowerFiles({filter:'**/*.css'}),
-  less: 'less/*.less',
+  css: bowerCssFiles,
+  less: 'less/**/*.less',
   fonts: 'bower_components/foundation-icon-fonts/*.{eot,woff,ttf,svg}',
   html: 'www/**.html',
   build: 'www/**'
@@ -38,7 +45,6 @@ gulp.task('style', function() {
     )
     .pipe(debug({title: 'css'}))
     .pipe(concat('style.css'))
-    .pipe(minifycss())
     .pipe(gulp.dest('www/'));
 });
 
@@ -56,6 +62,8 @@ gulp.task('watch', function() {
   gulp.watch('gulpfile.js', ['default']);
 });
 
+
+gulp.task('build', ['scripts','style','fonts']);
 gulp.task('default', ['scripts','style','fonts','watch']);
 
 // Try: gulp-livereload & tiny-lr
