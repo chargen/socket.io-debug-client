@@ -1,5 +1,5 @@
 function Timeline($element,$timelineMenu) {
-  
+
   var _this = this;
   var _$element = $element;
   var _$timelineMenu = $timelineMenu;
@@ -16,7 +16,7 @@ function Timeline($element,$timelineMenu) {
     WARNING: 'connection warning',
     ERROR: 'connection error'
   };
-    
+
   this.receivedEvent = function(type,data) {
     this.addItem(Timeline.ITEM_TYPES.RECEIVED_EVENT,type,data);
   };
@@ -41,29 +41,29 @@ function Timeline($element,$timelineMenu) {
   this.addError = function(header,body) {
     this.addItem(Timeline.ITEM_TYPES.ERROR,header,body,body);
   };
-  
+
   // ToDo: add parsing failed indicator
   this.addItem = function(type,header,body) {
-    console.log('addItem: ',arguments);
-    
+    //console.log('addItem: ',arguments);
+
     var rawBody = body;
     if(typeof body == 'object') {
       rawBody = JSON.stringify(body, undefined, 2);
       body = YAML.stringify(body,5,2);
     }
-    
+
     var $row = document.createElement("div");
     $row.setAttribute("class",'row ');
-    
+
     var $item = document.createElement("div");
     $item.setAttribute("class",type+' item columns');
     $row.appendChild($item);
-    
+
     var $header = document.createElement("div");
     $header.setAttribute("class",'header small-12 medium-3 columns');
     $header.textContent = header;
     $item.appendChild($header);
-    
+
     if(body) {
       var $body = document.createElement("pre");
       $body.setAttribute("class",'body small-12 medium-9 columns');
@@ -82,7 +82,7 @@ function Timeline($element,$timelineMenu) {
       _$element.scrollTop = _$element.scrollHeight;
     }
   };
-  
+
   this.clear = function() {
     while (_$element.firstChild) {
       _$element.removeChild(_$element.firstChild);

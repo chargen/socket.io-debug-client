@@ -22,7 +22,7 @@ $settings.onsubmit = function() {
   $disconnectBtn.classList.remove('disabled');
 };
 $disconnectBtn.onclick = function() {
-  console.log('disconnect');
+  //console.log('disconnect');
   disconnect();
 };
 
@@ -35,7 +35,7 @@ function disconnect() {
 }
 function connect(url) {
   var opts = {autoConnect:false,forceNew:true};
-  console.log("connecting to: ",url,opts);
+  //console.log("connecting to: ",url,opts);
   disconnect();
   _socket = io(url,opts);
   _socket.connect();
